@@ -21,7 +21,8 @@ public class JColorChooserDemo extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		Color color = getBackground();
 		color = JColorChooser.showDialog(this, "Choose background color", color);
-		if (color != null) {
+		if (color != null) {// if condition not used and user does not select any color null will be selected ---
+			//due to which exception occur
 			setBackground(color);
 		}
 	}

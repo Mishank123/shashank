@@ -15,13 +15,13 @@ public class LookAndFeelDemo2 extends JPanel implements ActionListener {
 		setLayout(new BorderLayout());
 		northPanel = new JPanel(new FlowLayout());
 		centerPanel = new JPanel(new FlowLayout());
-		Vector<String> strList = new Vector<String>();
-		laf = UIManager.getInstalledLookAndFeels();
+		Vector<String> strList = new Vector<String>();// a dynamic array - vector
+		laf = UIManager.getInstalledLookAndFeels();// fetch all the lool and feel from the o.s 
 		for (int i = 0; i < laf.length; i++) {
 			strList.add(laf[i].getName());
 		}
 
-		lookAndFeelList = new JComboBox<String>(strList);
+		lookAndFeelList = new JComboBox<String>(strList);//vector passed to combobox
 		lookAndFeelList.addActionListener(this);
 		northPanel.add(lookAndFeelList);
 
@@ -29,14 +29,14 @@ public class LookAndFeelDemo2 extends JPanel implements ActionListener {
 		centerPanel.add(new JButton("This is a Test JButton"));
 		centerPanel.add(new JCheckBox("This is a Test JCheckBox"));
 		centerPanel.add(new JScrollPane(new JList<String>(strList), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));// look and feel that are in combo box get appear on the list
 
 		add(northPanel, BorderLayout.NORTH);
 		add(centerPanel, BorderLayout.CENTER);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		int index = lookAndFeelList.getSelectedIndex();
+		int index = lookAndFeelList.getSelectedIndex();// return the index of the  
 		try {
 			UIManager.setLookAndFeel(laf[index].getClassName());
 			SwingUtilities.updateComponentTreeUI(this);

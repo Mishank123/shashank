@@ -31,22 +31,22 @@ public class JFileChooserDemo extends JPanel implements ActionListener {
 		String str = ae.getActionCommand();
 		if (str.equals("File Open")) {
 			JFileChooser jFileChooser = new JFileChooser();
-			jFileChooser.setCurrentDirectory(new File("."));
-			jFileChooser.setMultiSelectionEnabled(true);
-			int result = jFileChooser.showOpenDialog(this);
+			jFileChooser.setCurrentDirectory(new File("."));// current folder should be visible
+			jFileChooser.setMultiSelectionEnabled(true);// user can select multiple files
+			int result = jFileChooser.showOpenDialog(this);// display the opened dialog
 			if (result == JFileChooser.APPROVE_OPTION) {
-				File selectedFiles[] = jFileChooser.getSelectedFiles();
-				StringBuilder sb = new StringBuilder();
+				File selectedFiles[] = jFileChooser.getSelectedFiles();// returns the multiple selected files
+				StringBuilder sb = new StringBuilder();// lang package class -to add the path as it has append function 
 				sb.append("Selected Files : ");
-				for (File file : selectedFiles)
-					sb.append(file.getAbsolutePath() + ",");
+				for (File file : selectedFiles)// runs the no of files selected-----due to string builder its appends like A,B,C,
+					sb.append(file.getAbsolutePath() + ",");// adds the path of the selected file on the label
 				sb.deleteCharAt(sb.length() - 1);
 				lblFile.setText("Selected file: " + sb);
 			}
 		} else if (str.equals("File Save")) {
 			JFileChooser jFileChooser = new JFileChooser();
 			jFileChooser.setCurrentDirectory(new File("."));
-			int result = jFileChooser.showSaveDialog(this);
+			int result = jFileChooser.showSaveDialog(this);// show dialog has 2 btn save and cancel
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File selectedFile = jFileChooser.getSelectedFile();
 				lblFile.setText("Selected file: " + selectedFile.getAbsolutePath());
@@ -54,7 +54,7 @@ public class JFileChooserDemo extends JPanel implements ActionListener {
 		} else if (str.equals("Folder Browser")) {
 			JFileChooser jFileChooser = new JFileChooser();
 			jFileChooser.setCurrentDirectory(new File("."));
-			jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);// only directory will be visible
 			int result = jFileChooser.showOpenDialog(this);
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File selectedFile = jFileChooser.getSelectedFile();

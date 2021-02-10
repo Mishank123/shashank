@@ -20,8 +20,8 @@ public class JSplitPaneDemo extends JPanel {
 		jSplitPane2.setTopComponent(new JLabelDemo());
 		jSplitPane2.setBottomComponent(new JButtonDemo());
 		
-		jSplitPane1.setLeftComponent(jSplitPane2);
-		jSplitPane1.setRightComponent(new JComboBoxDemo());
+		jSplitPane1.setLeftComponent(jSplitPane2);// nesting of splitpane 2 in splitpane1
+		jSplitPane1.setRightComponent(new JComboBoxDemo());// adding jcombobox on right of 1
 		
 		add(jSplitPane1, BorderLayout.CENTER);
 	}
@@ -30,7 +30,7 @@ public class JSplitPaneDemo extends JPanel {
 		JFrame frame = new JFrame("JSplitPane Demo Example");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(new JSplitPaneDemo());
-		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);// open frame on full screen mode.....frame.pack
 		frame.setVisible(true);
 	}
 }

@@ -30,12 +30,12 @@ public class JOptionPaneDemo extends JPanel implements ActionListener {
 		Icon icon = new ImageIcon(getClass().getResource("/images/koala.jpg"));
 		String str = ae.getActionCommand();
 		if (str.equals("Message Dialog 1")) {
-			JOptionPane.showMessageDialog(this, "This is Message", "Title", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "This is Message", "Title", JOptionPane.INFORMATION_MESSAGE);// argument 1 - parent
 		} else if (str.equals("Message Dialog 2")) {
 			JOptionPane.showMessageDialog(this, "This is Message", "Title", JOptionPane.INFORMATION_MESSAGE, icon);
 		} else if (str.equals("Confirm Dialog")) {
 			int option = JOptionPane.showConfirmDialog(this, "Do You Want to Continue ?", "Continue App",
-					JOptionPane.YES_NO_CANCEL_OPTION);
+					JOptionPane.YES_NO_CANCEL_OPTION);// type casting
 			if (option == JOptionPane.YES_OPTION) {
 				JOptionPane.showMessageDialog(this, "Yes Option");
 			} else if (option == JOptionPane.NO_OPTION) {

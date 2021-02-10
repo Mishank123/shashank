@@ -15,7 +15,7 @@ import java.awt.event.*;
 
 public class CardLayoutDemo extends JPanel implements ActionListener {
 
-	JButton btnFirst, btnNext, btnPrevious, btnLast;
+	JButton btnFirst, btnNext, btnPrevious, btnLast;// for navigation 4 btns are created
 	JPanel centerPanel, southPanel;
 	CardLayout cardLayout;
 
@@ -31,7 +31,7 @@ public class CardLayoutDemo extends JPanel implements ActionListener {
 		add(centerPanel, BorderLayout.CENTER);
 		add(southPanel, BorderLayout.SOUTH);
 
-		centerPanel.add("JLabel", new JLabelDemo());
+		centerPanel.add("JLabel", new JLabelDemo());// id , panel
 		centerPanel.add("JButton", new JButtonDemo());
 		centerPanel.add("JRadioButton", new JRadioButtonDemo());
 		centerPanel.add("JCheckBox", new JCheckBoxDemo());
@@ -41,7 +41,7 @@ public class CardLayoutDemo extends JPanel implements ActionListener {
 		centerPanel.add("JSlider", new JSliderDemo());
 		centerPanel.add("JSpinner", new JSpinnerDemo());
 
-		btnFirst = new JButton("First");
+		btnFirst = new JButton("First");// action command is not given therefore equals to by default name of label
 		btnFirst.setMnemonic('F');
 		btnFirst.addActionListener(this);
 		btnNext = new JButton("Next");
@@ -64,7 +64,7 @@ public class CardLayoutDemo extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		String str = ae.getActionCommand();
 		if (str.equals("First")) {
-			cardLayout.first(centerPanel);
+			cardLayout.first(centerPanel);// shows 1st card on the center panel already created function
 		} else if (str.equals("Next")) {
 			cardLayout.next(centerPanel);
 		} else if (str.equals("Previous")) {

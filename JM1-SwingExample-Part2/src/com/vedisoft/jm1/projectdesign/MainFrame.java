@@ -22,24 +22,25 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	public MainFrame() {
 		setLayout(new BorderLayout());
-		desktopPane = new JDesktopPane() {
-			ImageIcon icon;
+		// 1.adding image to the background ------------------------------------>>>>
+		desktopPane = new JDesktopPane() {// desktopPane covers frame
+			ImageIcon icon;// Image is the interface
 			Image image;
 			{
 				icon = new ImageIcon(getClass().getResource("/icons/background1.jpg"));
 				image = icon.getImage();
 			}
 			@Override
-			protected void paintComponent(Graphics g) {
+			protected void paintComponent(Graphics g) {//already defined function overrided to cover the background  with image
 				super.paintComponent(g);
-				g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+				g.drawImage(image, 0, 0, getWidth(), getHeight(), this);// adding our image with function
 			}
 		};
-
+		//2. fetching look and feel details from O.S
 		laf = UIManager.getInstalledLookAndFeels();
 		statusLabel = new JLabel("Sample Project Developed By Vedisoft Software and Education Services Pvt. Ltd.");
-		desktopPane.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-		statusLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+		desktopPane.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));// upside dark and down side light
+		statusLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));// vice versa-lowered
 		statusLabel.setFont(new Font("Time New Roman", Font.BOLD, 16));
 
 		createToolBar();
@@ -51,9 +52,9 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		setTitle("Vedisoft : Sample Project Design");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/icons/p21.png"));
-		setIconImage(icon1.getImage());
+		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);// output will open on fullscreen mode
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/icons/p21.png"));// seting icon of the frame
+		setIconImage(icon1.getImage());// changes icon of the image
 		setVisible(true);
 	}
 
@@ -196,6 +197,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		menuItem1.setActionCommand("JLabelDemo");
 		menuItem1.setMnemonic('L');
 		menuItem1.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.Event.CTRL_MASK));
+		//  new values of key comes from keyEvent class
 		menuItem1.addActionListener(this);
 		jMenu1.add(menuItem1);
 
@@ -271,7 +273,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		menuItem11.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.Event.CTRL_MASK));
 		menuItem11.addActionListener(this);
 		jMenu1.add(menuItem11);
-
+// seperator used after 11 buttons
 		jMenu1.addSeparator();
 
 		JMenuItem menuItem13 = new JMenuItem("Exit");
@@ -282,7 +284,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		jMenu1.add(menuItem13);
 
 		JCheckBoxMenuItem menuItem14 = new JCheckBoxMenuItem("Metal");
-		menuItem14.setSelected(true);
+		menuItem14.setSelected(true);// selected by default ---------------------------------------------------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>
 		menuItem14.setActionCommand("Metal");
 		menuItem14.setMnemonic('e');
 		menuItem14.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.Event.CTRL_MASK));
@@ -324,14 +326,14 @@ public class MainFrame extends JFrame implements ActionListener {
 		bg.add(menuItem17);
 		bg.add(menuItem18);
 
-		menuBar.add(jMenu1);
-		menuBar.add(jMenu2);
-		setJMenuBar(menuBar);
+		menuBar.add(jMenu1);// adding example 
+		menuBar.add(jMenu2);// adding  look and feel on the menubar
+		setJMenuBar(menuBar);// function of JFrame class and add the menu bar on its location
 		
 		
 		
 	}
-	
+	// 3. 12 buttons then a seperator than 5 more buttons
 	public void createPopupMenu() {
 		JMenuItem menuItem1 = new JMenuItem("JLabel Demo", new ImageIcon(getClass().getResource("/icons/p1.png")));
 		menuItem1.setActionCommand("JLabelDemo");
@@ -413,7 +415,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		menuItem11.addActionListener(this);
 
 
-		jPopupMenu = new JPopupMenu();
+		jPopupMenu = new JPopupMenu();// created a popmenu and added all 11 items
 		jPopupMenu.add(menuItem1);
 		jPopupMenu.add(menuItem2);
 		jPopupMenu.add(menuItem3);
@@ -426,10 +428,11 @@ public class MainFrame extends JFrame implements ActionListener {
 		jPopupMenu.add(menuItem10);
 		jPopupMenu.add(menuItem11);
 		
-		desktopPane.setComponentPopupMenu(jPopupMenu);
+		desktopPane.setComponentPopupMenu(jPopupMenu);// memberfunction comes from desktoppane---add popupmenu to the desktop  by this on rightclicking on the desktoppane 
+		//pop up menu appears
 		
 	}
-
+// same action performed will be called on clicking on either of the toolbar
 	public void actionPerformed(ActionEvent ae) {
 		String str = ae.getActionCommand();
 		int i = -1;
@@ -447,8 +450,8 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		if (i > -1) {
 			try {
-				UIManager.setLookAndFeel(laf[i].getClassName());
-				SwingUtilities.updateComponentTreeUI(this);
+				UIManager.setLookAndFeel(laf[i].getClassName());// change the look and feel to current index
+				SwingUtilities.updateComponentTreeUI(this);// updates the look and feel
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(this, "Unable to Apply Look And Feel");
 			}
@@ -458,7 +461,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		JInternalFrame internalFrame = new JInternalFrame("Title", true, true, true, true);
 		if (str.equals("JLabelDemo")) {
 			internalFrame.setTitle("JJLabel Demo Example");
-			internalFrame.setFrameIcon(new ImageIcon(getClass().getResource("/icons/p1.png")));
+			internalFrame.setFrameIcon(new ImageIcon(getClass().getResource("/icons/p1.png")));// internal frame icon
 			internalFrame.setContentPane(new JLabelDemo());
 		} else if (str.equals("JButtonDemo1")) {
 			internalFrame.setTitle("JButton Demo Example 1");
@@ -509,7 +512,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		}
 		internalFrame.pack();
 		internalFrame.setVisible(true);
-		desktopPane.add(internalFrame, new Integer(1));
+		desktopPane.add(internalFrame, new Integer(1));// layer no is 1 therefore on clicking on the opened block that comes on foreground
 	}
 
 	public static void main(String args[]) {
