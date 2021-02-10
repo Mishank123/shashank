@@ -11,7 +11,7 @@ public class JSliderDemo extends JPanel implements ChangeListener {
 	JLabel l1;
 	Hashtable<Integer, JLabel> h = new Hashtable<>();
 	{
-		h.put(0, new JLabel("Zero"));
+		h.put(0, new JLabel("Zero"));// image icon can also be used instead of text
 		h.put(10, new JLabel("Ten"));
 		h.put(20, new JLabel("Twenty"));
 		h.put(30, new JLabel("Thirty"));
@@ -27,23 +27,24 @@ public class JSliderDemo extends JPanel implements ChangeListener {
 		s3 = new JSlider(SwingConstants.HORIZONTAL, 0, 100, 20);
 		l1 = new JLabel("Value : ");
 
-		s1.setValue(20);
+		// almost every property of slider
+		s1.setValue(20);// 
 		s1.setMinimum(10);
 		s1.setMaximum(40);
-		s1.setValue(42);
+		s1.setValue(42);// default display
 		s1.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 		s1.setMinorTickSpacing(5);
 		s1.setMajorTickSpacing(10);
 		s1.setPaintLabels(true);
 		s1.setPaintTicks(true);
-		s1.setSnapToTicks(true);
+		s1.setSnapToTicks(true);// displays  the tick mark on the nearest tick
 		s1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		s1.addChangeListener(this);
 
 		s2.setMajorTickSpacing(10);
 		s2.setPaintLabels(true);
 		s2.setLabelTable(h);
-		s2.setOrientation(JSlider.VERTICAL);
+		s2.setOrientation(JSlider.VERTICAL);// vertical slider
 
 		s3.setMinorTickSpacing(5);
 		s3.setMajorTickSpacing(10);
@@ -58,7 +59,7 @@ public class JSliderDemo extends JPanel implements ChangeListener {
 	}
 
 	@Override
-	public void stateChanged(ChangeEvent e) {
+	public void stateChanged(ChangeEvent e) {// on clicking change listener will be called
 		JSlider js = (JSlider) e.getSource();
 		l1.setText("Value : " + js.getValue());
 	}
@@ -70,4 +71,4 @@ public class JSliderDemo extends JPanel implements ChangeListener {
 		frame.setBounds(10, 10, 600, 300);
 		frame.setVisible(true);
 	}
-}
+}// used to take feedback

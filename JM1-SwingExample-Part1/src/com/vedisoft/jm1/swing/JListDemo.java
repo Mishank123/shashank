@@ -9,10 +9,10 @@ public class JListDemo extends JPanel {
 	JLabel headerLabel;
 	JLabel statusLabel;
 	JPanel controlPanel;
-	DefaultListModel<String> fruitsName;
-	JList<String> fruitList;
-	DefaultListModel<String> vegName;
-	JList<String> vegList;
+	DefaultListModel<String> fruitsName;//<datatype>     1st model and its list--------use of generics
+	JList<String> fruitList;//1st list
+	DefaultListModel<String> vegName;//2nd model and its list
+	JList<String> vegList;//2nd list
 	JButton showButton;
 
 	public JListDemo() {
@@ -29,21 +29,22 @@ public class JListDemo extends JPanel {
 		add(statusLabel,BorderLayout.SOUTH);
 
 		headerLabel.setText("Control in action: JList");
-
-		fruitsName = new DefaultListModel<String>();
+		//starting of first list--------------------------->>>>>>>>>>>>>>>>>>>>>
+		fruitsName = new DefaultListModel<String>();// creation of modelclass to handel data of list
 
 		fruitsName.addElement("Apple");
 		fruitsName.addElement("Grapes");
 		fruitsName.addElement("Mango");
 		fruitsName.addElement("Peer");
 
-		fruitList = new JList<String>(fruitsName);
-		fruitList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		fruitList.setSelectedIndex(0);
-		fruitList.setVisibleRowCount(3);
+		fruitList = new JList<String>(fruitsName);// to generate list of above model
+		fruitList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);//to select single option
+		fruitList.setSelectedIndex(0);//previously selected index
+		fruitList.setVisibleRowCount(3);// 3 items of list to be visible on list at a time
 
-		JScrollPane fruitListScrollPane = new JScrollPane(fruitList);
-
+		JScrollPane fruitListScrollPane = new JScrollPane(fruitList);// adding list to the scrollPane
+		// end of first list------------------------------>>>>>>>>>>>>>>>>>>>>>>
+		//starting of second list--------------------------->>>>>>>>>>>>>>>>>>>>>
 		vegName = new DefaultListModel<String>();
 
 		vegName.addElement("Lady Finger");
@@ -51,28 +52,35 @@ public class JListDemo extends JPanel {
 		vegName.addElement("Potato");
 		vegName.addElement("Tomato");
 
-		vegList = new JList<String>(vegName);
-		vegList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		vegList.setSelectedIndex(0);
+		vegList = new JList<String>(vegName);//<angular bracket generics to show data type>
+		vegList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);//multiple list can be selected -
+		//-to select multiple option you can select by ctrl+option
+		vegList.setSelectedIndex(2);// 2nd index selected by default
 		vegList.setVisibleRowCount(3);
 
 		JScrollPane vegListScrollPane = new JScrollPane(vegList);
-
+		// end of 2nd list and model----------------------------->>>>>>>>>>>>>>>>>>>>>
 		showButton = new JButton("Show");
 
-		showButton.addActionListener(new ActionListener() {
+		showButton.addActionListener(new ActionListener() {// anonymous action listener in inner class
 			public void actionPerformed(ActionEvent e) {
 				String data = "";
-				if (fruitList.getSelectedIndex() != -1) {
-					data = "Fruits Selected: " + fruitList.getSelectedValue();
+				if (fruitList.getSelectedIndex() != -1) {//atleast one option is selected
+					data = "Fruits Selected: " + fruitList.getSelectedValue();// fetches all selected values
 					statusLabel.setText(data);
 				}
 				if (vegList.getSelectedIndex() != -1) {
 					data += " Vegetables selected: ";
-					for (Object vegetable : vegList.getSelectedValues()) {
-						data += vegetable + " ";
+				//	for (Object vegetable : vegList.getSelectedValues()) {// loop for multli selection of list
+					//	data += vegetable + ",";//",";
+					//}
+					// new way to use function 
+					for (int index: vegList.getSelectedIndices()) {
+						data += vegName.elementAt(index)+",";
 					}
 				}
+				data = data.substring(0,data.length());
+				//data = data.substring(0,data.length()-1);// removes last comma
 				statusLabel.setText(data);
 			}
 		});

@@ -11,13 +11,14 @@ public class JTextAreaDemo extends JPanel implements ActionListener {
 	String newline = "\n";
 
 	public JTextAreaDemo() {
-		jtfInput = new JTextField(20);
+		jtfInput = new JTextField(20);//20 =columns
 		jtfInput.addActionListener(this);
 		jtAreaOutput = new JTextArea(5, 20);
-		jtAreaOutput.setCaretPosition(jtAreaOutput.getDocument().getLength());
+		jtAreaOutput.setCaretPosition(jtAreaOutput.getDocument().getLength());// function to move caret to next line  - cursor of keyboard
+		// data in output moves up by 1 position due to above line
 		jtAreaOutput.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(jtAreaOutput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);//ScrollPane to provide scrollbar
 		setLayout(new BorderLayout());
 		add(jtfInput, BorderLayout.NORTH);
 		add(scrollPane, BorderLayout.CENTER);
@@ -25,8 +26,8 @@ public class JTextAreaDemo extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent evt) {
 		String text = jtfInput.getText();
-		jtAreaOutput.append(text + newline);
-		jtfInput.selectAll();
+		jtAreaOutput.append(text + newline);// adds new line
+		jtfInput.selectAll();// select the content of textfield
 	}
 
 	public static void main(String[] args) {

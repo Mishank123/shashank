@@ -13,11 +13,12 @@ public class JSpinnerDemo extends JPanel implements ChangeListener {
 
 	public JSpinnerDemo() {
 		setLayout(new FlowLayout());
-		SpinnerNumberModel sp1 = new SpinnerNumberModel(0, 0, 100, 10);
-		spinner1 = new JSpinner(sp1);
+		SpinnerNumberModel sp1 = new SpinnerNumberModel(0, 0, 100, 10);// increases by every 10 number on clicking on it
+		spinner1 = new JSpinner(sp1);// number model created to add number
 		SpinnerDateModel sp2 = new SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
-		spinner2 = new JSpinner(sp2);
-		String colors[] = { "Red", "Green", "Blue", "Cyan" };
+		// date model to fetch  date--- four arguments are given 
+		spinner2 = new JSpinner(sp2);// here spd passed to the another spinner
+		String colors[] = { "Red", "Green", "Blue", "Cyan" };// list model to give string
 		SpinnerListModel sp3 = new SpinnerListModel(colors);
 		spinner3 = new JSpinner(sp3);
 		label1 = new JLabel("Value  : ");
@@ -31,9 +32,9 @@ public class JSpinnerDemo extends JPanel implements ChangeListener {
 	}
 
 	@Override
-	public void stateChanged(ChangeEvent arg0) {
+	public void stateChanged(ChangeEvent arg0) {//displaying the value on the label
 		JSpinner sp = (JSpinner) arg0.getSource();
-		label1.setText("Value : " + sp.getValue());
+		label1.setText("Value : " + sp.getValue());// get value = points the spinner selected
 	}
 
 	public static void main(String args[]) {
@@ -44,3 +45,4 @@ public class JSpinnerDemo extends JPanel implements ChangeListener {
 		frame.setVisible(true);
 	}
 }
+// number model , date model , list model already created class comes from java.xswing 

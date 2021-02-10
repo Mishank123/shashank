@@ -18,16 +18,16 @@ public class DateComboBoxDemo extends JPanel {
 				"EEE, MMM d, ''yy", "h:mm a", "H:mm:ss:SSS", "K:mm a,z", "yyyy.MMMMM.dd GGG hh:mm aaa" };
 		currentPattern = datePatterns[0];
 		jlbHeading = new JLabel("Enter Date pattern /Select from list:", JLabel.LEFT);
-		patternList = new JComboBox<String>(datePatterns);
-		patternList.setEditable(true);
+		patternList = new JComboBox<String>(datePatterns);// array passed in combo box
+		patternList.setEditable(true);// we can also type the pattern as editable is true
 
 		patternList.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				JComboBox jcmbDates = (JComboBox) e.getSource();
-				String seletedDate = (String) jcmbDates.getSelectedItem();
-				currentPattern = seletedDate;
-				showDateinLabel();
+				String seletedDate = (String) jcmbDates.getSelectedItem();// fetc
+				currentPattern = seletedDate;// the pattern we write is intialise in object
+				showDateinLabel();// displaying written format in the currentlalbel block
 			}
 		});
 
@@ -35,9 +35,9 @@ public class DateComboBoxDemo extends JPanel {
 		jlbResult = new JLabel(" ");
 		jlbResult.setForeground(Color.black);
 		jlbResult.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.black),
-				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));// mixture of two border
 
-		setLayout(new GridLayout(4, 1, 0, 5));
+		setLayout(new GridLayout(4, 1, 0, 5));// hgap - 0 as only one row is present
 		add(jlbHeading);
 		add(patternList);
 		add(jlbResultHeading);
@@ -49,11 +49,13 @@ public class DateComboBoxDemo extends JPanel {
 	public void showDateinLabel() {
 		Date today = new Date();
 		try {
+			// formating todays date in label in next 4 lines
 			SimpleDateFormat formatter = new SimpleDateFormat(currentPattern);
 			String dateString = formatter.format(today);
 			jlbResult.setForeground(Color.black);
 			jlbResult.setText(dateString);
 		} catch (IllegalArgumentException e) {
+			// if wrong format is entered error with red color appear on the 2nd label
 			jlbResult.setForeground(Color.red);
 			jlbResult.setText("Error: " + e.getMessage());
 		}

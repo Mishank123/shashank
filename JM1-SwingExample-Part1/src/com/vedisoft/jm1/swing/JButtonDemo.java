@@ -36,7 +36,7 @@ public class JButtonDemo extends JPanel implements ActionListener {
 
 		button3 = new JButton();
 		button3.setActionCommand("button3");
-		Icon icon = new ImageIcon(getClass().getResource("/images/koala.jpg"));
+		Icon icon = new ImageIcon(getClass().getResource("images/koala.jpg"));
 		button3.setIcon(icon);
 		button3.setToolTipText("This is JLabel with Icon");
 		button3.addActionListener(this);

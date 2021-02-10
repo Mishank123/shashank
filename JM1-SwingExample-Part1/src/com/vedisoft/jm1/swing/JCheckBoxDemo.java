@@ -27,7 +27,7 @@ public class JCheckBoxDemo extends JPanel {
 		jcbGlasses = new JCheckBox("Glasses");
 		jcbGlasses.setMnemonic(KeyEvent.VK_G);
 		jcbGlasses.setSelected(true);
-		jcbGlasses.addItemListener(myListener);
+		jcbGlasses.addItemListener(myListener);//itemlistener looks for itemstatechange
 
 		jcbHair = new JCheckBox("Hair");
 		jcbHair.setMnemonic(KeyEvent.VK_H);
@@ -80,7 +80,7 @@ public class JCheckBoxDemo extends JPanel {
 			if (e.getStateChange() == ItemEvent.DESELECTED)
 				c = '-';
 
-			choices.setCharAt(index, c);
+			choices.setCharAt(index, c);//changes letter with '-' symbol
 			jlbPicture.setIcon(
 					new ImageIcon(getClass().getResource("/images/geek-" + choices.toString().trim() + ".gif")));
 			jlbPicture.setToolTipText(choices.toString());

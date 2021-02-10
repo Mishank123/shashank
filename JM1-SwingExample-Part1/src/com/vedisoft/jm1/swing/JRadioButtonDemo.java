@@ -8,11 +8,11 @@ public class JRadioButtonDemo extends JPanel {
 
 	JLabel jlbPicture;
 	JRadioButton jrbNumbers, jrbAlphabets, jrbSymbols;
-	RadioListener myListener = null;
+	RadioListener myListener = null;//handler in another class
 
 	public JRadioButtonDemo() {
 		jrbNumbers = new JRadioButton("Numbers");
-		jrbNumbers.setMnemonic(KeyEvent.VK_N);
+		jrbNumbers.setMnemonic(KeyEvent.VK_N);//	jrbNumbers.setMnemonic("N");
 		jrbNumbers.setActionCommand("numbers");
 		jrbNumbers.setSelected(true);
 		jrbAlphabets = new JRadioButton("Alphabets");
@@ -22,12 +22,12 @@ public class JRadioButtonDemo extends JPanel {
 		jrbSymbols.setMnemonic(KeyEvent.VK_S);
 		jrbSymbols.setActionCommand("symbols");
 		
-		ButtonGroup group = new ButtonGroup();
+		ButtonGroup group = new ButtonGroup();//Button group object to group button----- one object for three button
 		group.add(jrbNumbers);
 		group.add(jrbAlphabets);
 		group.add(jrbSymbols);
 		
-		myListener = new RadioListener();
+		myListener = new RadioListener();//action listener to group button 
 		jrbNumbers.addActionListener(myListener);
 		jrbAlphabets.addActionListener(myListener);
 		jrbSymbols.addActionListener(myListener);
@@ -42,13 +42,13 @@ public class JRadioButtonDemo extends JPanel {
 		setLayout(new BorderLayout());
 		add(jplRadio, BorderLayout.WEST);
 		add(jlbPicture, BorderLayout.CENTER);
-		setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));// creates empty border 
 	}
 
 	class RadioListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			jlbPicture.setIcon(new ImageIcon(getClass().getResource("/images/" + e.getActionCommand() + ".jpg")));
+			jlbPicture.setIcon(new ImageIcon(getClass().getResource("/images/" + e.getActionCommand() + ".jpg")));//action command fetches name from set action command in line no 16.18.20..
 		}
 	}
 
@@ -56,7 +56,7 @@ public class JRadioButtonDemo extends JPanel {
 		JFrame frame = new JFrame("JRadioButton Usage Demo");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(new JRadioButtonDemo(), BorderLayout.CENTER);
-		frame.pack();
+		frame.pack();// same as setBounds to set size of frame--------no need to mention size -componenet size= frame size
 		frame.setVisible(true);
 	}
 }
